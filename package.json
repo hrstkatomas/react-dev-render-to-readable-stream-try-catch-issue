@@ -1,0 +1,22 @@
+{
+  "name": "react-dev-render-to-readable-stream-try-catch-issue",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "build": "",
+    "start": "bun run index.ts"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@types/react": "^19.0.2",
+    "@types/react-dom": "^19.0.2",
+    "hono": "^4.6.16",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  }
+}
