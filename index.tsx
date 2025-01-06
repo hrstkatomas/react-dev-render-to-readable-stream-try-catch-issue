@@ -7,16 +7,20 @@ import { App } from "./src/App.tsx";
 const app = new Hono();
 app.get("*", async (c) => {
 	try {
-		const appStream = await renderToReadableStream(<App />);
+		const appStream = await renderToReadableStream(<App />, {
+			onError(error) {
+				console.error(error);
+				// logServerCrashReport(error);
+			},
+		});
 		return stream(c, async (stream) => {
 			stream.onAbort(() => console.log("Aborted!"));
 			await stream.pipe(appStream);
 		});
 	} catch (error) {
-		return new Response("<h1>Something went wrong</h1>", {
-			status: 500,
-			headers: { "content-type": "text/html" },
-		});
+		console.log(error);
+		c.status(500);
+		return c.html("<h1>Something went wrong</h1>");
 	}
 });
 
